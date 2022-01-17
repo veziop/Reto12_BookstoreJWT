@@ -9,15 +9,6 @@ class BookSerializer(serializers.ModelSerializer):
 
 
 class AuthorSerializer(serializers.ModelSerializer):
-    # books = BookSerializer(many=True)
-    #
-    # def create(self, validated_data):
-    #     books_data = validated_data.pop("books")
-    #     author = Author.objects.create(**validated_data)
-    #     for book_data in books_data:
-    #         Book.objects.create(author=author, book=book_data)
-    #         return author
-
     class Meta:
         model = Author
-        fields = ['id', 'name', 'created_date', 'added_by_id'] #, 'books']
+        fields = ['id', 'name', 'created_date', 'added_by_id']
