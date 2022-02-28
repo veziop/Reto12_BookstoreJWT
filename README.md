@@ -1,10 +1,10 @@
-# Reto10_HeroAPI
+# Reto12_BookstoreJWT
 
 ## Introduction
 This proyect is a task for a Django Backend Bootcamp at [Geekshubs Accademy](https://geekshubsacademy.com). 
 It is a REST API built with Django Rest Framework. 
 In this API the user can create, read, update or delete objects representing two linked models: _Author_ and their _Book(s)_.
-This API uses a PostgreSQL database.
+This API uses a PostgreSQL database. It also uses JSON Web Tokens as a means of security.
 
 ## Author
 Sole author of this project: Valentin Piombo - valenp97@gmail.com - www.github.com/veziop
@@ -25,17 +25,15 @@ and your refresh JWT. If done correctly a new access token will be given.
 <br>
 Note: refresh tokens have a longer lifetime of 7 days. Once this expires, repeat the process from the beggining.
 
-<br>
-Open your browser at [127.0.0.1:8000/author/](http://127.0.0.1:8000/author/) to see the current list of authors. 
+<br><br>
+Open your browser at http://127.0.0.1:8000/author/ to see the current list of authors. 
 This list is very brief, add more by filling the form at the bottom of the page and click **POST**.
-
+<br><br>
 To update, partially update or delete an entry go to its endpoint 'hero/_pk_' where pk is it's ID and click on **DELETE**. Alternatively click on 
 Raw Data to edit the JSON input and finally click **PUT** to update, or **PATCH** to partially update.
 
-<br>
-To operate the Book objects go to [http://127.0.0.1:8000/book/](http://127.0.0.1:8000/book/) and treat it
-the same manner as with /author/.
-
+<br><br>
+To operate the Book objects go to http://127.0.0.1:8000/book/ and treat it the same manner as with /author/.
 
 <br>
 <br>
@@ -50,7 +48,7 @@ The first model in this project is Author, and it has four attributes:
 * created_date - DateFrield (the date of the creation of the instance into the database)
 * added_by_id - ForeignKey (the id of the User that created the instance)
 
-<br>
+<br><br>
 
 The second model is Book, and it holds a One-to-Many relationship with the model Author. Its six attributes:
 * id - Big Int Primary Key
