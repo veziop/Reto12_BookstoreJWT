@@ -10,10 +10,23 @@ This API uses a PostgreSQL database.
 Sole author of this project: Valentin Piombo - valenp97@gmail.com - www.github.com/veziop
 
 ## Using the API
-First, position the terminal at the root directory (containing 'api_bookstore/' - 'Biblioteca/' - 'manage.py' ) and run the server with: <br><br>
+Firstly register a superuser by using this command and follow the instructions on the terminal:<br>
+```django-admin createsuperuser```<br><br>
+This is the user that will be linked to the JSON Web Tokens (JWT). For more information on creating a superuser, visit the [docs](https://docs.djangoproject.com/en/4.0/ref/django-admin/#createsuperuser). 
+<br><br>
+Now position the terminal at the root directory (containing 'api_bookstore/' - 'Biblioteca/' - 'manage.py' ) and run the server with: <br>
 ```python manage.py runserver```
+<br><br>
+To obtain the JWT, navigate to [127.0.0.1:8000/api/token/](http://127.0.0.1:8000/api/token/) using a POST request and include a JSON in the request body containing two key/value pairs: 
+username and password from your superuser. If enter correctly, the response will contain a JSON with two key/value pairs: the *access JWT* and a refresh JWT.
+The access token is now active, and **should be input into the headings of all the following requests as a Bearer Token.** However, this token will only be accepted by the server for 60 minutes, and
+once it expires, a new access token must be retrieved by navigating to [127.0.0.1:8000/api/token/refresh/](http://127.0.0.1:8000/api/token/refresh/) with a POST request and include a JSON with the key "refresh" 
+and your refresh JWT. If done correctly a new access token will be given.
+<br>
+Note: refresh tokens have a longer lifetime of 7 days. Once this expires, repeat the process from the beggining.
 
-<br>Then open your browser at "[http://127.0.0.1:8000/author/](http://127.0.0.1:8000/author/)" to see the current list of authors. 
+<br>
+Open your browser at [127.0.0.1:8000/author/](http://127.0.0.1:8000/author/) to see the current list of authors. 
 This list is very brief, add more by filling the form at the bottom of the page and click **POST**.
 
 To update, partially update or delete an entry go to its endpoint 'hero/_pk_' where pk is it's ID and click on **DELETE**. Alternatively click on 
@@ -27,8 +40,8 @@ the same manner as with /author/.
 <br>
 <br>
 
+
 ------------------------------
-<br>
 
 ## Models
 The first model in this project is Author, and it has four attributes:
@@ -59,4 +72,4 @@ One router is used to register two endpoints: 'author/' and 'book/'. The parent 
 one specific object.
 
 ## Moving forward
-This project is very rudimentary, so next projects should include very important REST components like permissions, JWT, tests, authentication, etc. 
+This project is very rudimentary, so next projects should include very important REST components like permissions, tests, authentication, etc. 
